@@ -12,23 +12,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Latihan Row dan Coloumn'),
+          title: Text('Latihan Container'),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text('Text1'),
-            Text('Text2'),
-            Text('Text3'),
-            Row(
-              children: <Widget>[
-                Text('Text 4'),
-                Text('Text 5'),
-                Text('Text 6'),
-              ],
-            )
-          ],
+        body: Container(
+          color: Colors.orangeAccent,
+          margin: EdgeInsets.fromLTRB(10, 15, 20, 25),
+          padding: EdgeInsets.only(bottom: 20, top: 20),
+          child: Container(
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: <Color>[Colors.cyan, Colors.amberAccent])),
+          ),
         ),
       ),
     );
