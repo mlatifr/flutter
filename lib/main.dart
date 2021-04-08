@@ -11,16 +11,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text('Hello World')),
-        body: Center(
-            child: Container(
-                color: Colors.orangeAccent[100],
-                width: 150,
-                height: 120,
-                child: Text(
-                  ''' saat ini saya sedang berlatih flutter dengann topik TEXT''',
-                  style: TextStyle(color: Colors.blue, fontSize: 25),
-                ))),
+        appBar: AppBar(
+          title: Text('Latihan Row dan Coloumn'),
+        ),
+        body: Column(
+          children: <Widget>[Text('Text1'), Text('Text2'), Text('Text3')],
+        ),
       ),
     );
   }
