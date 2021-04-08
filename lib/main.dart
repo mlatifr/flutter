@@ -15,7 +15,20 @@ class MyApp extends StatelessWidget {
           title: Text('Latihan Row dan Coloumn'),
         ),
         body: Column(
-          children: <Widget>[Text('Text1'), Text('Text2'), Text('Text3')],
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('Text1'),
+            Text('Text2'),
+            Text('Text3'),
+            Row(
+              children: <Widget>[
+                Text('Text 4'),
+                Text('Text 5'),
+                Text('Text 6'),
+              ],
+            )
+          ],
         ),
       ),
     );
