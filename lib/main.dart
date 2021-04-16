@@ -1,7 +1,7 @@
 import 'dart:html';
 import 'dart:ui';
 
-import 'package:aplikasi_hello_world/post_result_model.dart';
+import 'package:aplikasi_hello_world/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -15,55 +15,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  PostResult postResult = null;
-  Widget postResultWidget() {
-    return Column(
-      children: <Widget>[
-        Text((postResult != null)
-            ? postResult.id +
-                ' | ' +
-                postResult.name +
-                ' | ' +
-                postResult.job +
-                ' | ' +
-                postResult.createdAt
-            : 'tidak ada data'),
-        TextButton(
-            onPressed: () {
-              PostResult.connectToAPI('Badu', 'Dokter').then((value) {
-                postResult = value;
-                setState(() {});
-              });
-            },
-            child: Text('Send Request'))
-      ],
-    );
-  }
-
-  Widget getResultWidget() {
-    return Column(
-      children: <Widget>[
-        Text((postResult != null)
-            ? postResult.id +
-                ' | ' +
-                postResult.name +
-                ' | ' +
-                postResult.job +
-                ' | ' +
-                postResult.createdAt
-            : 'tidak ada data'),
-        TextButton(
-            onPressed: () {
-              PostResult.connectToAPI('Badu', 'Dokter').then((value) {
-                postResult = value;
-                setState(() {});
-              });
-            },
-            child: Text('Send Request'))
-      ],
-    );
-  }
-
+  String output = 'no data';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -73,9 +25,27 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              postResultWidget(),
+              Text(output),
+              TextButton(
+                  onPressed: () {
+                    User.getUser('2').then((users) {
+                      output = '';
+                      for (int i = 0; i < users.length; i++) {
+                        output = output +
+                            '[ ' +
+                            users[i].id +
+                            ' ] ' +
+                            '[ ' +
+                            users[i].name +
+                            ' ] ' +
+                            users.length.toString();
+                        setState(() {});
+                      }
+                    });
+                  },
+                  child: Text('GET'))
             ],
           ),
         ),
