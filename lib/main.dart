@@ -16,6 +16,53 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   PostResult postResult = null;
+  Widget postResultWidget() {
+    return Column(
+      children: <Widget>[
+        Text((postResult != null)
+            ? postResult.id +
+                ' | ' +
+                postResult.name +
+                ' | ' +
+                postResult.job +
+                ' | ' +
+                postResult.createdAt
+            : 'tidak ada data'),
+        TextButton(
+            onPressed: () {
+              PostResult.connectToAPI('Badu', 'Dokter').then((value) {
+                postResult = value;
+                setState(() {});
+              });
+            },
+            child: Text('Send Request'))
+      ],
+    );
+  }
+
+  Widget getResultWidget() {
+    return Column(
+      children: <Widget>[
+        Text((postResult != null)
+            ? postResult.id +
+                ' | ' +
+                postResult.name +
+                ' | ' +
+                postResult.job +
+                ' | ' +
+                postResult.createdAt
+            : 'tidak ada data'),
+        TextButton(
+            onPressed: () {
+              PostResult.connectToAPI('Badu', 'Dokter').then((value) {
+                postResult = value;
+                setState(() {});
+              });
+            },
+            child: Text('Send Request'))
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,23 +75,7 @@ class _MyAppState extends State<MyApp> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text((postResult != null)
-                  ? postResult.id +
-                      ' | ' +
-                      postResult.name +
-                      ' | ' +
-                      postResult.job +
-                      ' | ' +
-                      postResult.createdAt
-                  : 'tidak ada data'),
-              TextButton(
-                  onPressed: () {
-                    PostResult.connectToAPI('Badu', 'Dokter').then((value) {
-                      postResult = value;
-                      setState(() {});
-                    });
-                  },
-                  child: Text('Send Request'))
+              postResultWidget(),
             ],
           ),
         ),
